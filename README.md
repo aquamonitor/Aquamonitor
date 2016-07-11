@@ -163,9 +163,9 @@ Every hour, do micro AWC and evacuate a bit of the water of the tank and replace
 
 #Code
 
-The code is divided in two entities: Rodi.py, Aquamonitor.py.
+The code is divided in three entities: rodi.py, awc.pi and aquamonitor.py.
 
-Rodi.py is the script in charge of opening and closing the Electrovalve to trigger ATO refill from the RO/DI. Aquamonitor.py is the main program that watch parameters and alerts the user, if need be.
+Rodi.py is the script in charge of opening and closing the Electrovalve to trigger ATO refill from the RO/DI. Aquamonitor.py is the main program that watch parameters and alerts the user, if need be. awc.pi handles the micro auto water changes.
 
 #Extending the code
 
