@@ -127,9 +127,13 @@ In the tank are 2 float switches, 2 AWC pumps. On the right side (free space) of
 
 #Water flow & physical diagram
 
+![Water flow](Water flow.png)
+
 Note: The tube from RO/DI to the Sump can be derived temporarily toward the AWC tank to refill it when needed, hence the dashed line.
 
 #Wiring diagram
+
+![Wiring diagram](Wiring Diagram.png)
 
 Electrovalve: The brown wire from the main power plug is connected to the central pin of the relay, the blue one of main power plug goes to the yellow/brown wire of the valve. Warning, this wire diagram is only for this precise pump model and maybe has to be adapted for another pump. The wiring of the pump itself is brown wire on the “closed by default” pin of the 220 side of the relay, the blue wire goes to the “open by default” pin of the 220V side of the relay.
 
@@ -164,7 +168,9 @@ If you have another probe, like another float switch or a water leak detector of
 -	Systemd : you will need to auto schedule the RO/DI refill, the AWC and the respawn of aquamonitor, should it crash or if the pi reboots
 
 In the /etc/systemd/system directory, add the following files :
-*<rodi.service>*
+
+rodi.service file:
+
 [Unit]
 Description=Daily RO/DI refill
 
@@ -175,7 +181,8 @@ TimeoutStopSec=40
 ExecStart=/usr/local/python/Aquamonitor/rodi.py 1200
 ExecStop=/usr/local/python/Aquamonitor/rodi.py close
 
-*<rodi.timer>*
+rodi.timer file:
+
 [Unit]
 Description=Daily RO/DI refill
 StopWhenUnneeded=true
@@ -187,7 +194,8 @@ Unit=rodi.service
 [Install]
 WantedBy=multi-user.target
 
-*<awc.timer>*
+awc.timer file:
+
 [Unit]
 Description=AWC service
 StopWhenUnneeded=true
@@ -199,7 +207,8 @@ Unit=awc.service
 [Install]
 WantedBy=multi-user.target
 
-*<awc.service>*
+awc.service file:
+
 [Unit]
 Description=AWC service
 
@@ -208,7 +217,8 @@ Type=forking
 TimeoutStartSec=20
 ExecStart=/usr/local/python/Aquamonitor/awc.py 8 # adjust the duration according to your needs & pump flow
 
-*<aquamonitor.service>*
+aquamonitor.service file:
+
 [Unit]
 Description=Aquamonitor
 
@@ -221,7 +231,6 @@ RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
-
 
 Once done, just start your newly created services :
 **systemctl enable awc rodi aquamonitor**
