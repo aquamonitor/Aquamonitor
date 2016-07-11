@@ -1,4 +1,4 @@
-A fully automated reef tank maintenance system (ATO + AWC) using a Raspberry Pi.
+A fully automated reef tank maintenance system handling auto top off refills and auto water changes, using a Raspberry Pi.
 
 #At a glance 
 
