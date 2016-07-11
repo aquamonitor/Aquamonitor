@@ -114,7 +114,7 @@ Total: ~180 €
 
 Basically, if you just want the thing to run with the least changes possible, just edit the variables used for emailing and pushover. Also adapt the refill timings to your valve and RO/DI debit, and size of the tank. Same for the AWC, adapt the flow to your needs.
 
-Think to add your credential for email and pushover at the begining of the aquamonitor.py file to make it work.
+Think to add your credential for email and pushover at the beginning of the aquamonitor.py file to make it work.
 
 The rest should be fine. 
 
