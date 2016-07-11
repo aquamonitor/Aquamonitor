@@ -80,16 +80,25 @@ All the part composing my own setup are below. But honestly you can switch most 
 Also, if you leave in a country using different power plug formats or current output, some minor changes might be required to adapt to your local specificities.
  
 ##Here is your shopping list:
--	A raspberry Pi full kit (a version 2 or 3 if you can) (£50)
+-	A raspberry Pi full kit (a version 2 or 3 if you can) (£50) https://thepihut.com/collections/raspberry-pi-kits-and-bundles/products/raspberry-pi-3-media-centre-kit
 -	A pair of float switch ($6.5)
+https://www.amazon.com/uxcell-Pieces-ZP4510-Vertical-Switches/dp/B00FHAEBIA/ref=sr_1_2?ie=UTF8&qid=1467236862&sr=8-2&keywords=float+switch
 -	An autonomous speaker to get audio alarms (£12)
+https://thepihut.com/products/mini-portable-speaker-for-the-raspberry-pi
 -	A pair of water leak detectors ($7.99)
+https://www.amazon.com/XCSOURCE-Moisture-Automatic-Watering-TE215/dp/B00ZR3B60I/ref=pd_sim_328_5?ie=UTF8&dpID=510HKqCvbqL&dpSrc=sims&preST=_AC_UL160_SR160%2C160_&refRID=Z1TNE5A92ZCCTRGT751R
 -	An electrovalve (or something similar, 39 €)
+https://www.amazon.fr/gp/product/B00UKXW9T2/ref=oh_aui_detailpage_o07_s00?ie=UTF8&psc=1
 -	A pair of little 5V DC pumps ($8)
+https://www.amazon.com/Submersible-Aquarium-Fountain-Pump-simulate-Environment/dp/B008OCZUK6/ref=sr_1_3?ie=UTF8&qid=1467237524&sr=8-3&keywords=5v+pump
 -	A 5V adapter to power the pumps ($5.5)
+https://www.amazon.com/ZJchao-Adapter-1000mA-Output-Supply/dp/B007MH75J8/ref=sr_1_2?ie=UTF8&qid=1467237590&sr=8-2&keywords=5v+ac+dc+adapter
 -	A relay board with at least 3 relays ($12)
--	One big bucket to store clean salty water reserve ($30)  
+https://www.amazon.com/Magentoo-Optocoupler-Shielded-Relay-Module/dp/B00YAFSQSE/ref=sr_1_11?ie=UTF8&qid=1467237304&sr=8-11&keywords=Trigger+Module+4CH+5V
+-	One big bucket to store clean salty water reserve ($30) 
+https://www.amazon.com/Eagle-1610MB-Polyethylene-Lever-lock-Capacity/dp/B0026GO5CA/ref=pd_sim_sbs_468_15?ie=UTF8&dpID=31in2c1J8uL&dpSrc=sims&preST=_AC_UL160_SR160%2C160_&refRID=F8BCGWWDPK9M92Y4QHX3
 -	One RGB led for the visual status ($2.58)
+https://www.amazon.com/Round-Common-Cathode-Emitting-Diodes/dp/B005VMDROS/ref=sr_1_3?ie=UTF8&qid=1467239595&sr=8-3&keywords=rgb+led
 
 Total: ~180 €
 
