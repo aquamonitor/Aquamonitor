@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily RO/DI refill
+
+[Service]
+Type=forking
+TimeoutStartSec=2000
+TimeoutStopSec=40
+ExecStart=/usr/local/python/Aquamonitor/rodi.py 1200

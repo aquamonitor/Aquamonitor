@@ -1,0 +1,8 @@
+[Unit]
+Description=AWC service
+
+[Service]
+Type=forking
+TimeoutStartSec=20
+ExecStart=/usr/local/python/Aquamonitor/awc.py 8
+

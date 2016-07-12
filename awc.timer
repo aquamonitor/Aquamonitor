@@ -1,0 +1,10 @@
+[Unit]
+Description=AWC service
+StopWhenUnneeded=true
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Unit=awc.service
+
+[Install]
+WantedBy=multi-user.target

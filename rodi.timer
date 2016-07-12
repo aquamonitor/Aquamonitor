@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily RO/DI refill
+StopWhenUnneeded=true
+
+[Timer]
+OnCalendar=*-*-* 21:00:00
+Unit=rodi.service
+
+[Install]
+WantedBy=multi-user.target

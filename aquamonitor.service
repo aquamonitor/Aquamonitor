@@ -1,0 +1,12 @@
+[Unit]
+Description=Aquamonitor
+
+[Service]
+Type=simple
+TimeoutStartSec=5
+ExecStart=/usr/bin/python /usr/local/python/Aquamonitor/aquamonitor.py start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
