@@ -179,6 +179,7 @@ If you have another probe, like another float switch or a water leak detector of
 -	Systemd : you will need to auto schedule the RO/DI refill, the AWC and the respawn of aquamonitor, should it crash or if the pi reboots
 
 In the /etc/systemd/system directory, add the following files :
+(they are provided in the repository as examples)
 
 rodi.service file:
 
