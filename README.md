@@ -1,3 +1,13 @@
+UPDATED 27/02/2018
+
+-> Please consider rodi-1.8 and aquamonitor-1.8 as the last versions. (I updated them from another account of mine, by mistake)
+
+* code debugging
+* physical setup update with a new eletrovalve (https://www.amazon.fr/gp/product/B010NA7OGE) and a IP controled power plug (https://www.amazon.fr/gp/product/B0156VT724)
+* Code has been adapted to this new setup and instead of triggering RO/DI valve opening from the Raspberry PI GPIO, I prefer to send the command as a HTTP/CGI request. The benefit is to be able to close / open the valve on distance by loggin into any device of your LAN and sending a HTTP request, in case your RASPI is down for any reason.
+* Corrected the message repeating function, that was buggy.
+* The only bug left, to my knowledge, is the fact that when a float switch is in between two states (say normal and low water for exemple), it nagg you with "alert" / "alert stopped" cycle. I'll fix this soon, it's not a deal breaker, just a minor annoiance.
+
 A fully automated reef tank maintenance system handling auto top off refills and auto water changes, using a Raspberry Pi.
 
 #At a glance 
@@ -39,11 +49,7 @@ I intend to extend the project overtime with other things like PH / ORP monitori
 #Encouragements & donations
 
 If you like this project, don’t hesitate to tell me. It’s always nice and flattering for the ego ;)
-If you feel like donating, please do, it’s always welcome as well and will allow me to buy some more components and interface them (mainly the ORP and pH probe).
-
-Last but not least, I think about creating a small company to deliver the system complete, already assembled or in kit, with support and code update. So if this could interest you, let me know, this could motivate me to actually do it.
-
-To make it simple, and since I buy most of my components from Amazon, you can send me gift cards, using this url https://www.amazon.com/gp/product/B0145WHYKC and use the address kameo@archimede.edu as a recipient.
+If you feel like donating, please do, it’s always welcome as well and will allow me to buy some more components and interface them (mainly the ORP and pH probe). Amazon gift card are a good way!
 
 #Responsibility and intellectual property
 
@@ -63,15 +69,16 @@ I looked into the Neptune and other professional appliances, they cost a dear lo
 
 When you start a reef, the main thing is that it is a closed environment. You control the water going in and out yourself so it’s unlikely you put too much. On the other hand, when you automate things, you have to be damn sure your code and design is very resilient to as many situations as possible. 
 
-To put it short, I flooded my living room once because of code indentation… So this code has been made, remade, read, re-read and I made some manual unit testing and Q&A to be as sure as I can that you won’t flood your living room as I did.
+To put it short, I flooded my living room once because of code indentation, another time because of arace condition… 
+So this code has been made, remade, read, re-read and I made some manual unit testing and Q&A to be as sure as I can that you won’t flood your living room as I did. Also, I've some "guardian angels", namely another codelet running on another machine (not the pi), checking that the PI is up, and if it is not the case, closing the RO/DI vavle to be sure nothing bad happens.
 
 #Required knowledges
 
-•	Basic electricity (like don’t put your fingers in the power plug). Be aware that manipulating the main current could be dangerous if improperly made, so if you don’t know, don’t do. Create a safe place to work, far from kids and be sure to insulate/coat your connectors.
+•	Basic electricity (the "don’t put your fingers in the plug" kind, not much more). Be aware that manipulating the main current could be dangerous if improperly made, so if you don’t know, don’t do. Create a safe place to work, far from kids and be sure to insulate/coat your connectors.
 •	Basic soldering. I was not good at it myself and survived it, really nothing challenging
 •	Basic Linux knowledges (I’ll try to make it as detailed as possible)
 •	Basic Python skills. I actually started python myself with this project, so no worries, it’s no rocket science and I’m actually barely a beginner, so anyone with basic programming skill could allow you to modify / customize the code according to your particular needs.
-•	Roughly 10h of work I would say. Once you have the part, assembly, Linux setup and all can be really fast.
+•	Roughly 4h of work I would say. Once you have the part, assembly, Linux setup and all can be really fast.
 
 #Parts needed
 
@@ -80,6 +87,11 @@ All the part composing my own setup are below. But honestly you can switch most 
 Also, if you leave in a country using different power plug formats or current output, some minor changes might be required to adapt to your local specificities.
  
 ##Here is your shopping list:
+* NEW FROM 27/02/18
+- A dumb on/off electrovalve : https://www.amazon.fr/gp/product/B010NA7OGE)
+- A, IP enabled power plug : https://www.amazon.fr/gp/product/B0156VT724
+(replaces the other electrovavle down below)
+
 -	A raspberry Pi full kit (a version 2 or 3 if you can) (£50) https://thepihut.com/collections/raspberry-pi-kits-and-bundles/products/raspberry-pi-3-media-centre-kit
 -	A pair of float switch ($6.5)
 https://www.amazon.com/uxcell-Pieces-ZP4510-Vertical-Switches/dp/B00FHAEBIA/ref=sr_1_2?ie=UTF8&qid=1467236862&sr=8-2&keywords=float+switch
@@ -89,6 +101,16 @@ https://thepihut.com/products/mini-portable-speaker-for-the-raspberry-pi
 https://www.amazon.com/XCSOURCE-Moisture-Automatic-Watering-TE215/dp/B00ZR3B60I/ref=pd_sim_328_5?ie=UTF8&dpID=510HKqCvbqL&dpSrc=sims&preST=_AC_UL160_SR160%2C160_&refRID=Z1TNE5A92ZCCTRGT751R
 -	An electrovalve (or something similar, 39 €)
 https://www.amazon.fr/gp/product/B00UKXW9T2/ref=oh_aui_detailpage_o07_s00?ie=UTF8&psc=1
+
+
+##Optional (or if you don’t have those already):
+-	Soldering tools ($23) 
+-	A UPS to be sure that if your main current is cut, your Aquamonitor (and aquarium for what it’s worth) will survive the cut ($ 160)
+-	Some few brass adapter, tubing and wires 
+-	A 220v (or 110v) power cord to mount
+-	A little case to protect the high voltage circuit
+-	Electric tape, maybe shrinkable wraps for wires
+For the Water change part:
 -	A pair of little 5V DC pumps ($8)
 https://www.amazon.com/Submersible-Aquarium-Fountain-Pump-simulate-Environment/dp/B008OCZUK6/ref=sr_1_3?ie=UTF8&qid=1467237524&sr=8-3&keywords=5v+pump
 -	A 5V adapter to power the pumps ($5.5)
@@ -100,21 +122,11 @@ https://www.amazon.com/Eagle-1610MB-Polyethylene-Lever-lock-Capacity/dp/B0026GO5
 -	One RGB led for the visual status ($2.58)
 https://www.amazon.com/Round-Common-Cathode-Emitting-Diodes/dp/B005VMDROS/ref=sr_1_3?ie=UTF8&qid=1467239595&sr=8-3&keywords=rgb+led
 
-Total: ~180 €
-
-##Optional (or if you don’t have those already):
--	Soldering tools ($23) 
--	A UPS to be sure that if your main current is cut, your Aquamonitor (and aquarium for what it’s worth) will survive the cut ($ 160)
--	Some few brass adapter, tubing and wires 
--	A 220v (or 110v) power cord to mount
--	A little case to protect the high voltage circuit
--	Electric tape, maybe shrinkable wraps for wires
-
 #Adjusting the variables to fit your setup
 
 Basically, if you just want the thing to run with the least changes possible, just edit the variables used for emailing and pushover. Also adapt the refill timings to your valve and RO/DI debit, and size of the tank. Same for the AWC, adapt the flow to your needs.
 
-Think to add your credential for email and pushover at the beginning of the aquamonitor.py file to make it work.
+Think to add your credential for pushover at the beginning of the aquamonitor.py file to make it work.
 
 The rest should be fine. 
 
@@ -181,19 +193,20 @@ If you have another probe, like another float switch or a water leak detector of
 In the /etc/systemd/system directory, add the following files :
 (they are provided in the repository as examples)
 
-rodi.service file:
+----- rodi.service file: -----
 
 [Unit]
 Description=Daily RO/DI refill
 
 [Service]
 Type=forking
-TimeoutStartSec=2000
-TimeoutStopSec=40
-ExecStart=/usr/local/python/Aquamonitor/rodi.py 1200
+TimeoutStartSec=2500
+TimeoutStopSec=60
+ExecStart=/usr/local/python/Aquamonitor/rodi.py 1500
 ExecStop=/usr/local/python/Aquamonitor/rodi.py close
+User=root
 
-rodi.timer file:
+----- rodi.timer file: -----
 
 [Unit]
 Description=Daily RO/DI refill
@@ -206,7 +219,7 @@ Unit=rodi.service
 [Install]
 WantedBy=multi-user.target
 
-awc.timer file:
+----- awc.timer file: ----- 
 
 [Unit]
 Description=AWC service
@@ -219,7 +232,7 @@ Unit=awc.service
 [Install]
 WantedBy=multi-user.target
 
-awc.service file:
+----- awc.service file: ------
 
 [Unit]
 Description=AWC service
@@ -229,7 +242,7 @@ Type=forking
 TimeoutStartSec=20
 ExecStart=/usr/local/python/Aquamonitor/awc.py 8 # adjust the duration according to your needs & pump flow
 
-aquamonitor.service file:
+------ aquamonitor.service file: ------
 
 [Unit]
 Description=Aquamonitor
@@ -237,7 +250,7 @@ Description=Aquamonitor
 [Service]
 Type=simple
 TimeoutStartSec=5
-ExecStart=/usr/bin/python /usr/local/python/aquamonitor/aquamonitor.py start # fix the path according to your setup
+ExecStart=/usr/bin/python /usr/local/python/aquamonitor/aquamonitor.py start
 Restart=always
 RestartSec=5
 
@@ -275,12 +288,10 @@ Mainly now, I’m thinking to integrate the following features:
 -	Add temperature monitoring
 -	Add a nice CGI version accessible from your favorite smartphone
 -	Add some log rrd database to generate eye catching graphics
--	Adding an automated response to high water situation in the sump, by activating the waste water AWC pump to eject a bit of the extra water until situation normalizes.
 -	Reintegrate PigPiod to the system, maybe even with stored scripts
 -	Render the system & program “multi tank” & “multi pi”
 -	Integration of streaming camera for the Sump, and maybe an underwater camera as well to get some live view of what happens
 -	Create some libraries to have a bit of code cleaning
--	Create a better CGI-BIN to offer mobile phone support
 -	Use a configuration file instead of variables in the main program files
 -	Allow configuration and to trigger an ATO refill or AWC manually from a Web interface
 -	Skin the potential web interface nicely to make it visually appealing
@@ -295,6 +306,6 @@ The cool thing is that you can make your Pi detects whatever (Infrared, sounds, 
 
 #Thanks to
 -	My wife for supporting me when we had issues with early release of this code (ie living room floods)
--	Gourmesso on instructable of giving me cool ideas around the water leak
+-	Gourmesso on instructable for giving me cool ideas around the water leak
 -	The autor of PigPiod for its awesome work on this very useful library/daemon (even though this version doesn't use it)
 - Various contributors on stackoverflow for code inspiration
